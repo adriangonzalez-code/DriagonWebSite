@@ -1,8 +1,20 @@
 <!-- FOOTER COMPONENT -->
-<footer class="bg-black text-white py-6 text-center">
-  <p>© <!--{{ currentYear }}--> Driagon. All rights reserved.</p>
-  <div class="mt-2">
-    <a href="https://github.com/adriangonzalez-code" target="_blank" class="text-red-700 hover:text-white mx-2">GitHub</a>
-    <a href="mailto:g.adrian.gonzalez.90@gmail.com" class="text-red-700 hover:text-white mx-2">Email</a>
+<footer class="bg-black text-white px-6 py-8 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+
+    <!-- Brand & Year -->
+    <div class="text-sm text-gray-400">
+      © {{ currentYear || '2025' }} <span class="font-semibold text-white">Driagon</span>. All rights reserved.
+    </div>
+
+    <!-- Links -->
+    <div class="flex space-x-6 text-sm">
+      <a href="https://github.com/adriangonzalez-code" target="_blank" class="hover:text-red-600 transition-colors duration-200">
+        <i class="fab fa-github mr-1"></i> GitHub
+      </a>
+      <a href="mailto:g.adrian.gonzalez.90@gmail.com" class="hover:text-red-600 transition-colors duration-200">
+        <i class="fas fa-envelope mr-1"></i> Email
+      </a>
+    </div>
   </div>
 </footer>

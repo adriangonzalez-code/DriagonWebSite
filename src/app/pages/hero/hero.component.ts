@@ -1,6 +1,23 @@
 import { Component } from '@angular/core';
-import { faJava, faDochub, faDocker, faAws, faGit, faGitlab, faGithub, faHtml5, faCss3Alt, faJs, faAngular, faJenkins } from "@fortawesome/free-brands-svg-icons";
-import {  } from '@fortawesome/free-solid-svg-icons';
+import {
+  faJava,
+  faDochub,
+  faDocker,
+  faAws,
+  faGit,
+  faGitlab,
+  faGithub,
+  faHtml5,
+  faCss3Alt,
+  faJs,
+  faAngular,
+  faJenkins,
+  faBitbucket,
+  faJira,
+  faConfluence,
+  faRedhat,
+} from "@fortawesome/free-brands-svg-icons";
+import { faCloud, faDatabase } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-hero',
@@ -21,8 +38,15 @@ export class HeroComponent {
   faJs = faJs;
   faAngular = faAngular;
   faJenkins = faJenkins;
+  faCloud = faCloud;
+  faJira = faJira;
+  faBitbucket = faBitbucket;
+  faConfluence = faConfluence;
+  faRedHat = faRedhat;
+  faDatabase = faDatabase;
   icons = [
     this.faJava,
+    this.faDatabase,
     this.faGit,
     this.faGithub,
     this.faGitlab,
@@ -33,6 +57,11 @@ export class HeroComponent {
     this.faJs,
     this.faAngular,
     this.faJenkins,
-    this.faAws
+    this.faAws,
+    this.faCloud,
+    this.faJira,
+    this.faBitbucket,
+    this.faConfluence,
+    this.faRedHat
   ];
 }

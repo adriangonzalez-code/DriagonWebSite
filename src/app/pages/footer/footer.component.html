@@ -1,20 +1,31 @@
+
 <!-- FOOTER COMPONENT -->
-<footer class="bg-black text-white px-6 py-8 border-t border-gray-800">
+<footer class="bg-black text-white px-6 py-8 border-t border-gray-800" role="contentinfo">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
 
     <!-- Brand & Year -->
     <div class="text-sm text-gray-400">
-      © {{ currentYear || '2025' }} <span class="font-semibold text-white">Driagon</span>. All rights reserved.
+      © {{ currentYear || '2025' }}
+      <span class="font-semibold text-white">Driagon - Adrian Gonzalez</span>.
+      All rights reserved.
     </div>
 
     <!-- Links -->
-    <div class="flex space-x-6 text-sm">
-      <a href="https://github.com/adriangonzalez-code" target="_blank" class="hover:text-red-600 transition-colors duration-200">
-        <i class="fab fa-github mr-1"></i> GitHub
-      </a>
-      <a href="mailto:g.adrian.gonzalez.90@gmail.com" class="hover:text-red-600 transition-colors duration-200">
-        <i class="fas fa-envelope mr-1"></i> Email
-      </a>
-    </div>
+    <nav aria-label="Social media and contact links">
+      <div class="flex space-x-6 text-sm">
+        <a href="https://github.com/adriangonzalez-code"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="hover:text-red-600 transition-colors duration-200"
+           aria-label="Visit GitHub profile of Senior Java Developer">
+          <i class="fab fa-github mr-1" aria-hidden="true"></i> GitHub
+        </a>
+        <a href="mailto:g.adrian.gonzalez.90@gmail.com"
+           class="hover:text-red-600 transition-colors duration-200"
+           aria-label="Email Senior Java Developer">
+          <i class="fas fa-envelope mr-1" aria-hidden="true"></i> Email
+        </a>
+      </div>
+    </nav>
   </div>
 </footer>

@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { ScrollAnimateDirective } from './shared/scroll-animate.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeroComponent } from './pages/hero/hero.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ContactComponent,
     FooterComponent,
     NavbarComponent,
-    ScrollAnimateDirective
+    ScrollAnimateDirective,
+    HeroComponent
   ],
   imports: [
     BrowserModule,

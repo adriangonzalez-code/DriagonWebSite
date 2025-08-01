@@ -74,13 +74,14 @@
           </div>
         </div>
 
-        <!-- Image -->
+        <!-- Image with Enhanced Zoom -->
         <div class="w-full">
           <div *ngIf="selectedProject.media && selectedProject.media.length > 0"
-               class="relative zoom-container"
+               class="relative zoom-container cursor-zoom-in"
                [class.zoomed]="isZoomed"
-               (click)="toggleZoom()"
-               (mousemove)="onMouseMove($event)">
+               (click)="toggleZoom($event)"
+               (mousemove)="onMouseMove($event)"
+               (touchmove)="onTouchMove($event)">
             <img [src]="selectedProject.media[currentSlide]"
                  alt="{{ selectedProject.name }} screenshot">
             <ng-container *ngIf="!isZoomed">

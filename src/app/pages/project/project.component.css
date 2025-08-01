@@ -1,0 +1,21 @@
+/* ELIMINA TODO ESTE BLOQUE */
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background-color: #1a202c;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.image-container:hover img {
+  transform: scale(1.05);
+}

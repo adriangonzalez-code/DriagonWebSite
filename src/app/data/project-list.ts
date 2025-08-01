@@ -23,7 +23,7 @@ This is more than a replacement; it's a strategic upgrade that brings visual man
       'assets/projects/config-server/scope users.png',
       'assets/projects/config-server/properties loaded from another api.png'
     ],
-    github: 'https://github.com/adriangonzalez-code/config-server',
+    github: 'https://github.com/adriangonzalez-code/Spring-Config-Server',
     demo: ''
   }
 ];

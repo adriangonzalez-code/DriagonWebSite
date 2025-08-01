@@ -15,7 +15,7 @@ import {
   faBitbucket,
   faJira,
   faConfluence,
-  faRedhat,
+  faRedhat
 } from "@fortawesome/free-brands-svg-icons";
 import { faCloud, faDatabase } from '@fortawesome/free-solid-svg-icons';
 

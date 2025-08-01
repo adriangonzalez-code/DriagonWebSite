@@ -1,21 +1,28 @@
-/* ELIMINA TODO ESTE BLOQUE */
-.image-container {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;
-  background-color: #1a202c;
+/* Contenedor que permite el efecto de lupa */
+.zoom-container {
+  overflow: hidden; /* Esencial para que el zoom no se salga del contenedor */
   border-radius: 0.5rem;
-  overflow: hidden;
+  background-color: #000; /* Fondo para las imágenes que no llenan el espacio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in; /* Indica que se puede hacer zoom */
 }
-.image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+
+/* La imagen dentro del contenedor */
+.zoom-container img {
+  transition: transform 0.3s ease; /* Transición suave para el zoom */
+  max-height: 60vh;
+  max-width: 100%;
+  object-fit: contain;
+  transform: scale(1); /* Estado inicial sin zoom */
 }
-.image-container:hover img {
-  transform: scale(1.05);
+
+/* Estilos cuando el zoom está activo */
+.zoom-container.zoomed {
+  cursor: zoom-out; /* Indica que se puede alejar */
+}
+
+.zoom-container.zoomed img {
+  transform: scale(2.5); /* Nivel de zoom (puedes ajustarlo) */
 }

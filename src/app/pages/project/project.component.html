@@ -19,7 +19,7 @@
       <!-- Technologies -->
       <div class="flex flex-wrap gap-2 mt-4 text-xs">
         <span *ngFor="let tech of project.technologies.slice(0, 4)"
-              class="bg-red-900 rounded-full px-2 py-1">
+              class="bg-red-600 rounded-full px-2 py-1">
           {{ tech }}
         </span>
       </div>
@@ -48,34 +48,45 @@
     <main class="flex-1 overflow-y-auto p-6">
       <div class="flex flex-col gap-8">
 
-        <!-- Details First -->
+        <!-- Description, Actions, and Tech -->
         <div class="w-full">
           <p class="mb-4 text-gray-300 text-justify">{{ selectedProject.overview }}</p>
+
+          <!-- Botones de Acción -->
+          <div class="my-6 flex flex-wrap items-center gap-4">
+            <button *ngIf="selectedProject.github" type="button" (click)="navigateTo(selectedProject.github); $event.stopPropagation()"
+                    class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+              <fa-icon [icon]="faGithub" class="text-lg"></fa-icon>
+              <span>View on GitHub</span>
+            </button>
+            <button *ngIf="selectedProject.demo" type="button" (click)="navigateTo(selectedProject.demo); $event.stopPropagation()"
+                    class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+              <fa-icon [icon]="faExternalLink" class="text-lg"></fa-icon>
+              <span>Live Demo</span>
+            </button>
+          </div>
+
+          <!-- Technologies -->
           <div class="flex flex-wrap gap-2">
-            <span *ngFor="let tech of selectedProject.technologies" class="bg-gray-700 rounded-full px-3 py-1 text-sm">
+            <span *ngFor="let tech of selectedProject.technologies" class="bg-red-600 rounded-full px-3 py-1 text-sm">
                 {{ tech }}
             </span>
           </div>
         </div>
 
-        <!-- Then Image & Links -->
+        <!-- Image -->
         <div class="w-full">
-          <!-- Contenedor de la imagen -->
           <div *ngIf="selectedProject.media && selectedProject.media.length > 0"
-               class="relative mb-4 flex items-center justify-center rounded-lg bg-black">
+               class="relative zoom-container"
+               [class.zoomed]="isZoomed"
+               (click)="toggleZoom()"
+               (mousemove)="onMouseMove($event)">
             <img [src]="selectedProject.media[currentSlide]"
-                 alt="{{ selectedProject.name }} screenshot"
-                 class="max-h-[60vh] max-w-full object-contain">
-            <button *ngIf="selectedProject.media.length > 1" (click)="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition">&lt;</button>
-            <button *ngIf="selectedProject.media.length > 1" (click)="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition">&gt;</button>
-          </div>
-
-          <div class="flex space-x-4">
-            <a *ngIf="selectedProject.github" [href]="selectedProject.github" target="_blank" class="flex items-center space-x-2 text-white hover:text-red-500 transition">
-              <fa-icon [icon]="faGithub"></fa-icon>
-              <span>GitHub</span>
-            </a>
-            <a *ngIf="selectedProject.demo" [href]="selectedProject.demo" target="_blank" class="text-white hover:text-red-500 transition">Demo</a>
+                 alt="{{ selectedProject.name }} screenshot">
+            <ng-container *ngIf="!isZoomed">
+              <button *ngIf="selectedProject.media.length > 1" (click)="$event.stopPropagation(); prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition">&lt;</button>
+              <button *ngIf="selectedProject.media.length > 1" (click)="$event.stopPropagation(); nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition">&gt;</button>
+            </ng-container>
           </div>
         </div>
       </div>

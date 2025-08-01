@@ -24,24 +24,23 @@ export class ProjectComponent {
   }
 
   closeModal() {
-    this.opening = false;
     this.closing = true;
+    this.opening = false;
     setTimeout(() => {
       this.selectedProject = null;
       this.closing = false;
-    }, 400); // match duration of animation
+    }, 400); // Corresponde a la duración de la animación
   }
 
   nextSlide() {
-    if (this.selectedProject?.media) {
+    if (this.selectedProject && this.selectedProject.media) {
       this.currentSlide = (this.currentSlide + 1) % this.selectedProject.media.length;
     }
   }
 
   prevSlide() {
-    if (this.selectedProject?.media) {
-      this.currentSlide =
-        (this.currentSlide - 1 + this.selectedProject.media.length) % this.selectedProject.media.length;
+    if (this.selectedProject && this.selectedProject.media) {
+      this.currentSlide = (this.currentSlide - 1 + this.selectedProject.media.length) % this.selectedProject.media.length;
     }
   }
 

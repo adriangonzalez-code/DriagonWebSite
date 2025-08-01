@@ -22,10 +22,11 @@
 
   <!-- Modal -->
   <div *ngIf="selectedProject"
-       class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center px-4 animate__animated animate__fadeIn animate__faster"
+       class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center px-4 animate__animated animate__fadeIn animate__faster"
        role="dialog" aria-modal="true" aria-labelledby="projectTitle">
 
-    <div class="bg-white text-gray-900 max-w-3xl w-full rounded-2xl p-6 shadow-2xl overflow-y-auto max-h-[90vh] relative
+
+  <div class="bg-white text-gray-900 max-w-3xl w-full rounded-2xl p-6 shadow-2xl overflow-y-auto max-h-[90vh] relative
             animate__animated"
          [ngClass]="{
        'animate__fadeInDown animate__faster': opening,

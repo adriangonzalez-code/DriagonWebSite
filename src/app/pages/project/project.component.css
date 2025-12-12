@@ -1,0 +1,28 @@
+/* Contenedor que permite el efecto de lupa */
+.zoom-container {
+  overflow: hidden; /* Esencial para que el zoom no se salga del contenedor */
+  border-radius: 0.5rem;
+  background-color: #000; /* Fondo para las imágenes que no llenan el espacio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in; /* Indica que se puede hacer zoom */
+}
+
+/* La imagen dentro del contenedor */
+.zoom-container img {
+  transition: transform 0.3s ease; /* Transición suave para el zoom */
+  max-height: 60vh;
+  max-width: 100%;
+  object-fit: contain;
+  transform: scale(1); /* Estado inicial sin zoom */
+}
+
+/* Estilos cuando el zoom está activo */
+.zoom-container.zoomed {
+  cursor: zoom-out; /* Indica que se puede alejar */
+}
+
+.zoom-container.zoomed img {
+  transform: scale(2.5); /* Nivel de zoom (puedes ajustarlo) */
+}

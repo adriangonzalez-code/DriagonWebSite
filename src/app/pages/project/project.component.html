@@ -1,3 +1,4 @@
+<!-- PROJECTS SECTION -->
 <section id="projects" class="flex flex-col justify-center px-6 bg-gradient-to-r from-black to-gray-900 py-20 animate__animated animate__fadeIn">
   <header>
     <h2 class="text-5xl font-bold text-center mb-10 mt-5 animate__animated animate__zoomIn text-gray-400">
@@ -5,95 +6,91 @@
     </h2>
   </header>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <!-- Project Card -->
     <div *ngFor="let project of projects; let i = index"
          class="bg-gradient-to-br from-gray-800 to-gray-600 border border-gray-600 text-white rounded-xl p-6 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer opacity-0 animate-zoomFromBack"
          [style.animationDelay]="(i * 0.2) + 's'"
          (click)="openModal(project)">
-    <h3 class="font-bold mb-2 text-xl">{{ project.name }}</h3>
-      <p class="text-gray-400 text-lg mb-3 text-justify">{{ project.description }}</p>
-      <div class="flex flex-wrap gap-2 text-red-500 text-sm font-mono">
-        <span *ngFor="let tech of project.technologies"
-              class="bg-red-700 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
+
+      <!-- Card Header -->
+      <h3 class="font-bold mb-2 text-xl">{{ project.name }}</h3>
+      <p class="text-gray-400 line-clamp-3">{{ project.description }}</p>
+
+      <!-- Technologies -->
+      <div class="flex flex-wrap gap-2 mt-4 text-xs">
+        <span *ngFor="let tech of project.technologies.slice(0, 4)"
+              class="bg-red-600 rounded-full px-2 py-1">
           {{ tech }}
         </span>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Modal -->
-  <div *ngIf="selectedProject"
-       class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center px-4 animate__animated animate__fadeIn animate__faster"
-       role="dialog" aria-modal="true" aria-labelledby="projectTitle">
+<!-- Modal -->
+<div *ngIf="selectedProject"
+     class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[1000] p-4"
+     [ngClass]="{'animate-fadeIn': opening, 'animate-fadeOut': closing}"
+     (click)="closeModal()">
 
+  <!-- Modal Content -->
+  <div class="bg-gradient-to-br from-gray-800 to-black border-2 border-red-700 text-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col"
+       [ngClass]="{'animate-zoomFromBack': opening, 'animate-zoomToBack': closing}"
+       (click)="$event.stopPropagation()">
 
-  <div class="bg-white text-gray-900 max-w-3xl w-full rounded-2xl p-6 shadow-2xl overflow-y-auto max-h-[90vh] relative
-            animate__animated"
-         [ngClass]="{
-       'animate__fadeInDown animate__faster': opening,
-       'animate__fadeOutUp animate__faster': closing
-     }">
-      <div class="flex justify-between items-center mb-4">
-        <h3 id="projectTitle" class="text-2xl font-bold">{{ selectedProject.name }}</h3>
-        <button (click)="closeModal()"
-                class="text-gray-600 hover:text-red-600 text-2xl font-bold transition"
-                aria-label="Close modal">
-          &times;
-        </button>
-      </div>
+    <!-- Header -->
+    <header class="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
+      <h3 class="text-2xl font-bold">{{ selectedProject.name }}</h3>
+      <button (click)="closeModal()" class="text-gray-400 hover:text-white transition text-3xl leading-none">&times;</button>
+    </header>
 
-      <p class="mb-4 text-gray-700 text-justify">{{ selectedProject.overview }}</p>
+    <!-- Body -->
+    <main class="flex-1 overflow-y-auto p-6">
+      <div class="flex flex-col gap-8">
 
-      <h4 class="text-lg font-semibold text-red-600 mt-4">Tech Stack</h4>
-      <div class="flex flex-wrap gap-2 mt-2 mb-6">
-      <span *ngFor="let tech of selectedProject.technologies"
-            class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
-        {{ tech }}
-      </span>
-      </div>
+        <!-- Description, Actions, and Tech -->
+        <div class="w-full">
+          <p class="mb-4 text-gray-300 text-justify">{{ selectedProject.overview }}</p>
 
-      <ng-container *ngIf="selectedProject.media && selectedProject.media.length">
-        <h4 class="text-lg font-semibold text-red-600 mb-2">Gallery</h4>
-
-        <!-- Carrusel -->
-        <div class="relative w-full rounded-xl shadow-lg mb-6">
-          <div class="flex items-center justify-center bg-gradient-to-br from-black to-gray-900 min-h-[300px] rounded-xl">
-          <div class="relative w-full h-[400px]">
-              <img *ngFor="let img of selectedProject.media; let i = index"
-                   [src]="img"
-                   [alt]="'Screenshot ' + (i + 1) + ' of ' + selectedProject.name"
-                   class="absolute top-0 left-0 w-full h-full object-contain rounded transition-opacity duration-500 ease-in-out"
-                   [ngClass]="{
-         'opacity-100 z-10': currentSlide === i,
-         'opacity-0 z-0': currentSlide !== i
-       }"
-                   loading="lazy" />
-            </div>
+          <!-- Botones de Acción -->
+          <div class="my-6 flex flex-wrap items-center gap-4">
+            <button *ngIf="selectedProject.github" type="button" (click)="navigateTo(selectedProject.github); $event.stopPropagation()"
+                    class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+              <fa-icon [icon]="faGithub" class="text-lg"></fa-icon>
+              <span>View on GitHub</span>
+            </button>
+            <button *ngIf="selectedProject.demo" type="button" (click)="navigateTo(selectedProject.demo); $event.stopPropagation()"
+                    class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+              <fa-icon [icon]="faExternalLink" class="text-lg"></fa-icon>
+              <span>Live Demo</span>
+            </button>
           </div>
 
-          <!-- Flechas -->
-          <button *ngIf="selectedProject.media.length > 1"
-                  (click)="prevSlide()"
-                  class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full z-10 text-5xl">
-            ‹
-          </button>
-          <button *ngIf="selectedProject.media.length > 1"
-                  (click)="nextSlide()"
-                  class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full z-10 text-5xl">
-          ›
-          </button>
+          <!-- Technologies -->
+          <div class="flex flex-wrap gap-2">
+            <span *ngFor="let tech of selectedProject.technologies" class="bg-red-600 rounded-full px-3 py-1 text-sm">
+                {{ tech }}
+            </span>
+          </div>
         </div>
-      </ng-container>
 
-      <div class="flex gap-4">
-        <button *ngIf="selectedProject.github"
-                (click)="openInNewTab(selectedProject.github)"
-                class="inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition text-sm font-semibold shadow-sm"
-                type="button"
-                aria-label="Open GitHub repository">
-          <fa-icon [icon]="faGithub"></fa-icon>
-          View on GitHub
-        </button>
+        <!-- Image with Enhanced Zoom -->
+        <div class="w-full">
+          <div *ngIf="selectedProject.media && selectedProject.media.length > 0"
+               class="relative zoom-container cursor-zoom-in"
+               [class.zoomed]="isZoomed"
+               (click)="toggleZoom($event)"
+               (mousemove)="onMouseMove($event)"
+               (touchmove)="onTouchMove($event)">
+            <img [src]="selectedProject.media[currentSlide]"
+                 alt="{{ selectedProject.name }} screenshot">
+            <ng-container *ngIf="!isZoomed">
+              <button *ngIf="selectedProject.media.length > 1" (click)="$event.stopPropagation(); prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition">&lt;</button>
+              <button *ngIf="selectedProject.media.length > 1" (click)="$event.stopPropagation(); nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition">&gt;</button>
+            </ng-container>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   </div>
-</section>
+</div>

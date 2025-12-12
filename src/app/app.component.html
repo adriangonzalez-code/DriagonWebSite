@@ -1,31 +1,15 @@
-<!-- NAVBAR -->
-<app-navbar></app-navbar>
+<!-- WRAPPER PRINCIPAL -->
+<div class="flex flex-col min-h-screen">
 
-<!-- HERO SECTION -->
-<section id="home" class="min-h-screen bg-black text-white pt-24 text-center flex flex-col items-center justify-center px-4">
-  <img src="assets/Logo Driagon 1.PNG" alt="Driagon Logo" class="h-32 mb-6 animate__animated animate__pulse animate__infinite" />
-  <h1 class="text-5xl md:text-6xl font-bold animate__animated animate__fadeIn">Hi, I'm <span class="text-red-700">Driagon</span></h1>
-  <p class="mt-4 text-xl md:text-2xl max-w-2xl animate__animated animate__fadeInUp animate__delay-1s">
-    Java & Spring Boot Developer with a passion for clean architecture, scalable APIs, and tech that matters.
-  </p>
-  <a href="#contact" class="mt-10 px-6 py-3 bg-red-700 hover:bg-red-600 rounded-lg text-white font-semibold transition">
-    Contact Me
-  </a>
-  <div class="flex flex-wrap justify-center mt-10 gap-4 sm:gap-6">
-    <fa-icon *ngFor="let icon of icons"
-             [icon]="icon"
-             class="text-red-500 text-2xl sm:text-3xl md:text-4xl animate__animated animate__zoomIn animate__slower">
-    </fa-icon>
-  </div>
-</section>
+  <!-- NAVBAR -->
+  <app-navbar></app-navbar>
 
-<!-- ABOUT COMPONENT -->
-<app-about></app-about>
+  <!-- CONTENIDO -->
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
 
-<!-- EXPERIENCE COMPONENT -->
-<app-experience></app-experience>
+  <!-- FOOTER -->
+  <app-footer></app-footer>
 
-<app-contact></app-contact>
-
-<!-- FOOTER COMPONENT -->
-<app-footer></app-footer>
+</div>
